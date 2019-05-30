@@ -1,11 +1,16 @@
 require 'tty-prompt'
-require './models/provider'
-require './models/service'
+require '../models/provider'
+require '../models/service'
 
 class Provider_Controller
+  attr_accessor :providers
+
   @service_list = ['Mind Reading', 'Demonic Exorcism', 'Potion Therapy', 'Liver Transplants']
 
-  @providers = [Provider.new('Junius', '234-486-9800', @service_list), Provider.new('Pearl', '978-123-5768', @service_list)]
+  def self.all
+    @providers = [Provider.new('Junius', '234-486-9800', @service_list), Provider.new('Pearl', '978-123-5768', @service_list)]
+    @providers
+  end
 
   def self.index
     @providers.each do |provider|
