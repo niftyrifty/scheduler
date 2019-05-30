@@ -9,12 +9,21 @@ class Service
 end
 
 class Provider
-    def initialize(name, phone_number, list_of_services, list_of_availability)
+    def initialize(name, phone_number)
         @name = name
         @phone_number = phone_number
         @list_of_services = Hash.new
         @list_of_availability = Array.new(365)
     end
+
+    def getName()
+	    @name
+    end
+
+    def getPhoneNumber()
+	    @phone_number
+    end
+
 end
 
 class Appointment
@@ -31,10 +40,3 @@ class Client
 		@name = name
 	end
 end
-# puts 'hello world'
-
-# service = Service.new(
-#     'Tokyo',
-#     '100',
-#     1
-# )
