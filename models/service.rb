@@ -1,8 +1,9 @@
 class Service
-  def initiate(name, price, duration_hours)
+  attr_accessor :name, :price, :duration
+
+  def initialize(name, price_in_dollars, duration_in_hours)
     @name = name
-    @price = 
-    @duration_hours = duration_hours
-    @calendar = Array.new(365*8)   
+    @price = price_in_dollars
+    @duration = duration_in_hours
   end
 end
