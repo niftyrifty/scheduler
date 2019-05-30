@@ -13,7 +13,7 @@ class Provider_Controller
     end
   end
 
-  def self.add_provider 
+  def self.add
     prompt = TTY::Prompt.new 
     name = prompt.ask('Name:')
     phone_number = prompt.ask('Phone number:')
@@ -24,7 +24,7 @@ class Provider_Controller
     puts "#{provider.name} is successfully added."
   end
 
-  def self.remove_provider
+  def self.remove
     prompt = TTY::Prompt.new
     options = @providers.map { |provider| provider.name}
     choice = prompt.select("Pick a provider to remove", options)

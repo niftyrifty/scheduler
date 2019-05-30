@@ -12,7 +12,7 @@ class Service_Controller
     end
   end
 
-  def self.add_service
+  def self.add
     prompt = TTY::Prompt.new
     name = prompt.ask('Name:')
     price = prompt.ask('Price($):')
@@ -22,7 +22,7 @@ class Service_Controller
     puts "#{service.name} is successfully added."
   end
 
-  def self.remove_service
+  def self.remove
     prompt = TTY::Prompt.new
     options = @services.map { |service| service.name}
     choice = prompt.select("Pick a service to delete", options)
