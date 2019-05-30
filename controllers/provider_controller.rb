@@ -1,30 +1,38 @@
 require 'tty-prompt'
 require '../models/provider'
 
-
-
-#$name = prompt.ask('Name:')
-#$phone_number = prompt.ask('Phone number:')
-
-# @providers = 
-
 class Provider_Controller
-  # provider = Provider.new($name, $phone_number)
-  # puts provider.getName()
-  # puts provider.getPhoneNumber()
+  @providers = [Provider.new('Junius', '234-486-9800'), Provider.new('Pearl', '978-123-5768')]
+  
+  def self.index
+    @providers.each do |provider|
+      puts "#{provider.name}'s phone number is #{provider.phone_number}'"
+    end
+  end
 
-  # Need help figuring out how to get create/add working 
-  def self.create 
+  def self.add_provider 
     prompt = TTY::Prompt.new 
     name = prompt.ask('Name:')
     phone_number = prompt.ask('Phone number:')
-    $providers[name] = Provider.new(name, phone_number)
-    puts("Provider Name: "+ $providers[name].getName)
-    puts("Provider Phone #: " + $providers[name].getPhoneNumber) 
+    provider = Provider.new(name, phone_number)
+    @providers << provider
+    puts "#{provider.name} is successfully added."
+  end
+
+  def self.remove_provider
+    prompt = TTY::Prompt.new
+    options = @providers.map { |provider| provider.name}
+    choice = prompt.select("Pick a provider to remove", options)
+    @providers = @providers.reject { |provider| provider.name == choice}
   end
 end
 
-Provider_Controller.create
+
+
+Provider_Controller.add_provider
+Provider_Controller.index
+Provider_Controller.remove_provider
+Provider_Controller.index
 
 # class Provider_Controller
 #   def create
