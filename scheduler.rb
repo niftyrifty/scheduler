@@ -1,60 +1,24 @@
 require 'tty-prompt'
-require './Service'
-require './Provider'
-require './Appointment'
+require './controllers/service_controller'
+require './controllers/provider_controller'
 
 
 class Scheduler
-  createAppointmentPrompt = "appointment:new"
-  createServicePrompt = "service:new"
-  createProviderPrompt = "provider:new"
-  listProvidersPrompt = "provider:list"
-  createClientPrompt = "client:new"
-  createAvailabilityPrompt = "availability:new"
-  
-  deleteServicePrompt = "service:delete"
-  deleteProviderPrompt = "provider:delete"
-  deleteAvailabilityPrompt = "availability:delete"
-  endCommand = "end"
-
-  def createAppointment()
-    puts("createAppointment");
-  end
-  
-  def createService()
-    puts("createService");
-  end
-
-  continueProgram = true
-while continueProgram do
-  #make this the chooser again
-
-	# command = $prompt.ask('Command: ')
-	# # case ARGV[0]
-	# case command
-	# when createAppointmentPrompt
-	# 	createAppointment();
-	# when createServicePrompt
-	# 	createService();
-	# when createProviderPrompt
-	# 	createProvider();
-	# when createClientPrompt
-	# 	createClientPrompt();
-	# when createAvailabilityPrompt
-	# 	createAvailability();
-	# when listProvidersPrompt
-	#        listProviders();	
-	# when deleteServicePrompt
-	# 	deleteService();
-	# when deleteProviderPrompt
-	# 	deleteProvider();
-	# when deleteAvailabilityPrompt
-	# 	deleteAvailability();
-	# when endCommand
-	# 	continueProgram = false	
-	# else
-	# 	puts ("ERROR: Incorrect input");
-	# end	
+	continueProgram = true
+	prompt = TTY::Prompt.new
+	while continueProgram do
+		options = ["Add Provider","Add Service", "Remove Provider", "Remove Service", "End Session"]
+		choice = prompt.select("Choose an option", options)
+		case choice
+		when "Add Service"
+			Service_Controller.add_service	
+		when "Remove Service"
+			Service_Controller.remove_service	
+		when "End Session"
+			continueProgram = false
+		end
+		Service_Controller.index
+	end
 end
     
 

@@ -1,15 +1,12 @@
 require 'tty-prompt'
-require '../models/provider'
+require './models/provider'
 
 prompt = TTY::Prompt.new
 
-name = prompt.ask('Name:')
-phone_number = prompt.ask('Phone number:')
-
 class Provider_Controller
-  provider = Provider.new(name, phone_number)
-  puts provider.name
-  puts provider.phone_number
+#  provider = Provider.new(name, phone_number)
+#  puts provider.name
+#  puts provider.phone_number
 end
 
 # class Provider_Controller
