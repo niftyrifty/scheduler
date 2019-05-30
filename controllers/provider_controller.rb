@@ -1,6 +1,6 @@
 require 'tty-prompt'
-require '../models/provider'
-require '../models/service'
+require './models/provider'
+require './models/service'
 
 class Provider_Controller
   @service_list = ['Mind Reading', 'Demonic Exorcism', 'Potion Therapy', 'Liver Transplants']
