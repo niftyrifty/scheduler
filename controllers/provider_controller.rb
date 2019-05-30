@@ -31,7 +31,3 @@ class Provider_Controller
     @providers = @providers.reject { |provider| provider.name == choice}
   end
 end
-
-Provider_Controller.index
-Provider_Controller.add_provider
-Provider_Controller.index
