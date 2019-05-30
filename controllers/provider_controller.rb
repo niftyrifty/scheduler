@@ -1,12 +1,15 @@
 require 'tty-prompt'
 require '../models/provider'
+require '../models/service'
 
 class Provider_Controller
-  @providers = [Provider.new('Junius', '234-486-9800'), Provider.new('Pearl', '978-123-5768')]
-  
+  @service_list = ['Mind Reading', 'Demonic Exorcism', 'Potion Therapy', 'Liver Transplants']
+
+  @providers = [Provider.new('Junius', '234-486-9800', @service_list), Provider.new('Pearl', '978-123-5768', @service_list)]
+
   def self.index
     @providers.each do |provider|
-      puts "#{provider.name}'s phone number is #{provider.phone_number}'"
+      puts "#{provider.name}'s phone number is #{provider.phone_number}. (S)he provides these services: #{provider.services}"
     end
   end
 
@@ -14,7 +17,9 @@ class Provider_Controller
     prompt = TTY::Prompt.new 
     name = prompt.ask('Name:')
     phone_number = prompt.ask('Phone number:')
-    provider = Provider.new(name, phone_number)
+    choices = @service_list
+    services = prompt.multi_select("Please choose three services from the following list:", choices)
+    provider = Provider.new(name, phone_number, services)
     @providers << provider
     puts "#{provider.name} is successfully added."
   end
@@ -27,33 +32,6 @@ class Provider_Controller
   end
 end
 
-
-
+Provider_Controller.index
 Provider_Controller.add_provider
 Provider_Controller.index
-Provider_Controller.remove_provider
-Provider_Controller.index
-
-# class Provider_Controller
-#   def create
-#     name = $prompt.ask('Name: ')
-#     phone_number = $prompt.ask('Phone #: ')
-#     $providers[name] = Provider.new(name,phone_number)	
-#     puts("Provider Name: "+ $providers[name].getName)
-#     puts("Provider Phone #: " + $providers[name].getPhoneNumber) 
-#   end
-
-#   def add(name, phone_number, list_of_services)
-#     Provider.new(name, phone_number, list_of_services)
-#   end
-
-#   def remove
-#     name = $prompt.ask('Name: ')
-#     if $providers.key?(name)
-#       $providers.delete(name)
-#       puts("#{name} successfully deleted")
-#     else
-#       puts("Provider does not exist")
-#     end
-#   end
-# end
