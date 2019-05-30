@@ -1,5 +1,5 @@
 require 'tty-prompt'
-require '../models/service'
+require './models/service'
 
 class Service_Controller
   attr_accessor :services
@@ -29,6 +29,3 @@ class Service_Controller
     @services = @services.reject { |service| service.name == choice }
   end
 end
-
-Service_Controller.remove_service
-Service_Controller.index
