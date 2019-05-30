@@ -3,18 +3,17 @@ load 'classes.rb'
 $prompt = TTY::Prompt.new
 
 $providers = Hash.new
-tempName = "Bob"
-$providers[tempName] = 0
 createAppointmentPrompt = "appointment:new"
 createServicePrompt = "service:new"
 createProviderPrompt = "provider:new"
+listProvidersPrompt = "provider:list"
 createClientPrompt = "client:new"
 createAvailabilityPrompt = "availability:new"
 
 deleteServicePrompt = "service:delete"
 deleteProviderPrompt = "provider:delete"
 deleteAvailabilityPrompt = "availability:delete"
-
+endCommand = "end"
 
 def createAppointment()
 	puts("createAppointment");
@@ -39,7 +38,9 @@ end
 def createAvailability()
 	puts("createAvailability");
 end
-
+def listProviders()
+	puts($providers);
+end
 def deleteService()
 	puts("deleteService");
 end
@@ -61,23 +62,32 @@ def deleteProvider()
 		puts("Provider does not exist")
 	end
 end
-case ARGV[0]
-when createAppointmentPrompt
-	createAppointment();
-when createServicePrompt
-	createService();
-when createProviderPrompt
-	createProvider();
-when createClientPrompt
-	createClientPrompt();
-when createAvailabilityPrompt
-	createAvailability();
-when deleteServicePrompt
-	deleteService();
-when deleteProviderPrompt
-	deleteProvider();
-when deleteAvailabilityPrompt
-	deleteAvailability();
-else
-	puts ("ERROR: Incorrect input");
-end	
+continueProgram = true
+while continueProgram do
+	command = $prompt.ask('Command: ')
+	# case ARGV[0]
+	case command
+	when createAppointmentPrompt
+		createAppointment();
+	when createServicePrompt
+		createService();
+	when createProviderPrompt
+		createProvider();
+	when createClientPrompt
+		createClientPrompt();
+	when createAvailabilityPrompt
+		createAvailability();
+	when listProvidersPrompt
+	       listProviders();	
+	when deleteServicePrompt
+		deleteService();
+	when deleteProviderPrompt
+		deleteProvider();
+	when deleteAvailabilityPrompt
+		deleteAvailability();
+	when endCommand
+		continueProgram = false	
+	else
+		puts ("ERROR: Incorrect input");
+	end	
+end
