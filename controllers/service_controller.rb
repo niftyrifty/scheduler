@@ -1,5 +1,5 @@
 require 'tty-prompt'
-require '../models/service'
+require_relative '../models/service'
 
 class Service_Controller
   attr_accessor :services

@@ -1,6 +1,6 @@
 require 'tty-prompt'
-require '../models/provider'
-require '../models/service'
+require_relative '../models/provider'
+require_relative '../models/service'
 
 class Provider_Controller
   attr_accessor :providers

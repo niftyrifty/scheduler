@@ -2,7 +2,7 @@
 #TODO set client
 
 require 'tty-prompt'
-require '../models/client'
+require_relative '../models/client'
 
 class Client_Controller
 end
