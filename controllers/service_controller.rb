@@ -22,7 +22,7 @@ class ServiceController
   end
 
   def self.add
-    prompt = TTY::Prompt.new
+    prompt = TTY::Prompt.new(interrupt: :exit)
     name = prompt.ask('Name:')
     price = prompt.ask('Price($):')
     duration = prompt.ask('Duration(hours):')
@@ -37,7 +37,7 @@ class ServiceController
   end
 
   def self.remove
-    prompt = TTY::Prompt.new
+    prompt = TTY::Prompt.new(interrupt: :exit)
     options = @services.map { |service| service.name}
     choice = prompt.select("Pick a service to delete", options)
     

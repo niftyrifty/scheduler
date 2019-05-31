@@ -30,11 +30,17 @@ class Scheduler
 			method_name: :view_schedule
 		}
 	}
-	
+
+
+
+
+
 	continue_program = true
-	prompt = TTY::Prompt.new
+	prompt = TTY::Prompt.new(interrupt: :exit)
+
 	while continue_program do
-		choice = prompt.select("What would you like to do?", FUNCTION_LOOKUP.keys)
+		#puts "Press 'q' to end program".red
+		choice = prompt.select("What would you like to do? (press 'control-c' to quit)", FUNCTION_LOOKUP.keys)
 		FUNCTION_LOOKUP[choice][:controller].send(FUNCTION_LOOKUP[choice][:method_name])
 	
 		# TODO: rewrite the end session function

@@ -16,6 +16,7 @@ DAY_OF_WEEK = {
 class AppointmentController
   attr_accessor :appointment_candidate, :appointments
 
+
   @appointments = []
 
   def self.all
@@ -34,7 +35,8 @@ class AppointmentController
 
   def self.add
     continueProgram = true
-    prompt = TTY::Prompt.new
+    prompt = TTY::Prompt.new(interrupt: :exit)
+
 
     while continueProgram do
       client = prompt.ask("Client name:")

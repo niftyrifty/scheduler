@@ -29,7 +29,7 @@ class ProviderController
   end
 
   def self.add
-    prompt = TTY::Prompt.new 
+    prompt = TTY::Prompt.new(interrupt: :exit)
 
     name = prompt.ask('Provider Name:')
     phone_number = prompt.ask('Phone number:')
@@ -49,7 +49,7 @@ class ProviderController
   end
 
   def self.remove
-    prompt = TTY::Prompt.new
+    prompt = TTY::Prompt.new(interrupt: :exit)
     options = @providers.map { |provider| provider.name}
     choice = prompt.select("Pick a provider to remove", options)
 
@@ -64,7 +64,7 @@ class ProviderController
   #TODO: abstract the puts into something that's in control of input and output
 
   def self.view_schedule
-    prompt = TTY::Prompt.new
+    prompt = TTY::Prompt.new(interrupt: :exit)
     all_names = []
     @providers.each { |provider| all_names << provider.name}
 
