@@ -7,7 +7,7 @@ class Scheduler
 	continueProgram = true
 	prompt = TTY::Prompt.new
 	while continueProgram do
-		options = ["Add Provider", "Remove Provider", "Add Service", "Remove Service", "Schedule an Appointment", "End Session"]
+		options = ["Add Provider", "Remove Provider", "Add Service", "Remove Service", "Schedule an Appointment", "View Schedule of a particular Provider",  "End Session"]
 		choice = prompt.select("What would you like to do?", options)
 
 		case choice
@@ -25,6 +25,8 @@ class Scheduler
 			Service_Controller.remove
 		when "Schedule an Appointment"
 			Appointment_Controller.add
+		when "View Schedule of a particular Provider"
+			Provider_Controller.view_schedule
 		when "End Session"
 			continueProgram = false
 		end

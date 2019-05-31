@@ -61,7 +61,24 @@ class Provider_Controller
     puts self.index
   end
 
-  # def self.view_calendar
-  #   TODO
-  # end
+  def self.view_schedule
+    prompt = TTY::Prompt.new
+    all_names = []
+    @providers.each { |provider| all_names << provider.name}
+
+    provider_name = prompt.select("Which provider's schedule would you like to see?", all_names)
+
+    selected_provider = @providers.select { |provider| provider.name == provider_name}[0]
+
+    puts "----------\n"
+    puts "Below are the appointments on #{selected_provider.name}'s calendar:"
+    selected_provider.scheduled_appointments.map do |appt|
+      puts "Client name: #{appt.client}
+      Service: #{appt.service}
+      Daste: #{appt.date}
+      Start time: #{appt.start_time}
+      "
+    end
+    puts "----------\n"
+  end
 end
