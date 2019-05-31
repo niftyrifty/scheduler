@@ -57,6 +57,9 @@ class Appointment_Controller
       
       if check_availability
         @appointments << @appointment_candidate
+        selected_provider = Provider_Controller.all.select { |provider| provider.name == @appointment_candidate.provider }[0]
+        selected_provider.scheduled_appointments << @appointment_candidate
+
         puts "Appointment successfully scheduled for #{@appointment_candidate.client}:
         Service: #{@appointment_candidate.service}
         Provider: #{@appointment_candidate.provider}
