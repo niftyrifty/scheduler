@@ -2,26 +2,26 @@ require 'tty-prompt'
 require './controllers/service_controller'
 require './controllers/provider_controller'
 
-
 class Scheduler
 	continueProgram = true
 	prompt = TTY::Prompt.new
 	while continueProgram do
-		options = ["Add Provider","Add Service", "Remove Provider", "Remove Service", "End Session"]
-		choice = prompt.select("Choose an option", options)
+		options = ["Add Provider", "Remove Provider", "Add Service", "Remove Service", "End Session"]
+		choice = prompt.select("What would you like to do?", options)
+
 		case choice
-		when "Add Service"
-			Service_Controller.add_service
-			Service_Controller.index	
 		when "Add Provider"
-			Provider_Controller.add_provider
 			Provider_Controller.index	
-		when "Remove Service"
-			Service_Controller.remove_service
-			Service_Controller.index
+			Provider_Controller.add
 		when "Remove Provider"
-			Provider_Controller.remove_provider
 			Provider_Controller.index
+			Provider_Controller.remove
+		when "Add Service"
+			Service_Controller.index
+			Service_Controller.add
+		when "Remove Service"
+			Service_Controller.index
+			Service_Controller.remove
 		when "End Session"
 			continueProgram = false
 		end
