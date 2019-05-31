@@ -61,6 +61,8 @@ class ProviderController
     puts self.index
   end
 
+  #TODO: abstract the puts into something that's in control of input and output
+
   def self.view_schedule
     prompt = TTY::Prompt.new
     all_names = []
