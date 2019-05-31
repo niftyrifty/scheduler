@@ -8,4 +8,8 @@ class Appointment
     @date = date
     @start_time = start_time    
   end
+
+  def same(other)
+    self.service == other.service && self.provider == other.provider && self.date == other.date && self.start_time == other.start_time 
+  end
 end
