@@ -4,19 +4,19 @@ require './controllers/provider_controller'
 require './controllers/appointment_controller'
 
 class Scheduler
-	continueProgram = true
+	continue_program = true
 	prompt = TTY::Prompt.new
-	while continueProgram do
+	while continue_program do
 		options = ["Add Provider", "Remove Provider", "Add Service", "Remove Service", "Schedule an Appointment", "View Schedule of a particular Provider",  "End Session"]
 		choice = prompt.select("What would you like to do?", options)
 
 		case choice
 		when "Add Provider"
-			Provider_Controller.index	
-			Provider_Controller.add
+			ProviderController.index	
+			ProviderController.add
 		when "Remove Provider"
-			Provider_Controller.index
-			Provider_Controller.remove
+			ProviderController.index
+			ProviderController.remove
 		when "Add Service"
 			Service_Controller.index
 			Service_Controller.add
@@ -26,9 +26,9 @@ class Scheduler
 		when "Schedule an Appointment"
 			Appointment_Controller.add
 		when "View Schedule of a particular Provider"
-			Provider_Controller.view_schedule
+			ProviderController.view_schedule
 		when "End Session"
-			continueProgram = false
+			continue_program = false
 		end
 	end
 end

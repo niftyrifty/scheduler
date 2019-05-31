@@ -2,7 +2,7 @@ require 'tty-prompt'
 require_relative '../models/provider'
 require_relative '../models/service'
 
-class Provider_Controller
+class ProviderController
   attr_accessor :providers
 
   @service_types = ['Mind Reading', 
