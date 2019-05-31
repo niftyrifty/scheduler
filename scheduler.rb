@@ -4,24 +4,36 @@ require './controllers/provider_controller'
 require './controllers/appointment_controller'
 
 class Scheduler
+	OPTIONS = ["Add Provider", "Remove Provider", "Add Service", "Remove Service", "Schedule an Appointment", "View Schedule of a particular Provider",  "End Session"]
+
+	#change this into a hash of hashes
+	FUNCTION_LOOKUP = {
+		"Add Service" => {
+			controller: ServiceController,
+			method_name: :add
+		},
+		"Add Provider" => :add,
+		"Remove Provider" => :remove
+	}
+	
 	continue_program = true
 	prompt = TTY::Prompt.new
-	while continue_program do
-		options = ["Add Provider", "Remove Provider", "Add Service", "Remove Service", "Schedule an Appointment", "View Schedule of a particular Provider",  "End Session"]
-		choice = prompt.select("What would you like to do?", options)
 
+	while continue_program do
+		choice = prompt.select("What would you like to do?", OPTIONS)
+		
+		# Refactor gradually
+		# 1. make every line identical to line 34-35 first
+		# 2. and then collapse it down
 		case choice
-		when "Add Provider"
-			ProviderController.index	
-			ProviderController.add
+		when "Add Provider"	
+			ProviderController.send(FUNCTION_LOOKUP[choice])
 		when "Remove Provider"
-			ProviderController.index
-			ProviderController.remove
+			ProviderController.send(choice)
 		when "Add Service"
-			ServiceController.index
-			ServiceController.add
+			# ServiceController.add
+			FUNCTION_LOOKUP[choice][:controller].send(FUNCTION_LOOKUP[choice][:method_name])
 		when "Remove Service"
-			ServiceController.index
 			ServiceController.remove
 		when "Schedule an Appointment"
 			AppointmentController.add
