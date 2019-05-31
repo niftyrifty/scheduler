@@ -9,7 +9,7 @@ class Appointment
     @start_time = start_time    
   end
 
-  def same(other)
+  def equal(other)
     self.service == other.service && self.provider == other.provider && self.date == other.date && self.start_time == other.start_time 
   end
 end

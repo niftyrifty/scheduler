@@ -86,10 +86,10 @@ class AppointmentController
   end
 
   def self.conflict?
-    check_same = @appointments.map do |appointment|
-      @appointment_candidate.same(appointment)
+    check_equal = @appointments.map do |appointment|
+      @appointment_candidate.equal(appointment)
     end
 
-    check_same.include?(true)
+    check_equal.include?(true)
   end
 end
