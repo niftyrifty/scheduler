@@ -1,6 +1,3 @@
-#TODO add appointment
-#TODO appointment comparator to check conflicts
-
 require 'tty-prompt'
 require 'date'
 require_relative '../models/appointment'
@@ -81,6 +78,15 @@ class Appointment_Controller
     provider_day_off = Provider_Controller.all.find { |provider| provider.name == provider_name}.day_off
     
     return false if day_of_week == provider_day_off
+    return false if conflict?
     true
+  end
+
+  def self.conflict?
+    check_same = @appointments.map do |appointment|
+      @appointment_candidate.same(appointment)
+    end
+
+    check_same.include?(true)
   end
 end
