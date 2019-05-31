@@ -31,23 +31,12 @@ class Scheduler
 		}
 	}
 
-
-
-
-
 	continue_program = true
 	prompt = TTY::Prompt.new(interrupt: :exit)
 
 	while continue_program do
-		#puts "Press 'q' to end program".red
 		choice = prompt.select("What would you like to do? (press 'control-c' to quit)", FUNCTION_LOOKUP.keys)
 		FUNCTION_LOOKUP[choice][:controller].send(FUNCTION_LOOKUP[choice][:method_name])
-	
-		# TODO: rewrite the end session function
-		# Could consider using a key down, reference tty docs
-		# when "End Session"
-		# 	continue_program = false
-		# end
 	end
 end
     
