@@ -13,7 +13,7 @@ DAY_OF_WEEK = {
       0 => 'Sunday'
     }
 
-class Appointment_Controller
+class AppointmentController
   attr_accessor :appointment_candidate, :appointments
 
   @appointments = []
@@ -42,7 +42,7 @@ class Appointment_Controller
                 ['Mind Reading', 'Demonic Exorcism', 
                 'Potion Therapy', 'Liver Transplants'])
       provider = prompt.select("Please select from these providers:",   
-                  Provider_Controller.all
+                  ProviderController.all
                     .select do |provider| 
                       provider.services.include?(service)
                     end.map(&:name)
@@ -57,7 +57,7 @@ class Appointment_Controller
       
       if check_availability
         @appointments << @appointment_candidate
-        selected_provider = Provider_Controller.all.select { |provider| provider.name == @appointment_candidate.provider }[0]
+        selected_provider = ProviderController.all.select { |provider| provider.name == @appointment_candidate.provider }[0]
         selected_provider.scheduled_appointments << @appointment_candidate
 
         puts "Appointment successfully scheduled for #{@appointment_candidate.client}:
@@ -78,7 +78,7 @@ class Appointment_Controller
     key_of_day = @appointment_candidate.date.wday
     day_of_week = DAY_OF_WEEK[key_of_day]
     provider_name = @appointment_candidate.provider
-    provider_day_off = Provider_Controller.all.find { |provider| provider.name == provider_name}.day_off
+    provider_day_off = ProviderController.all.find { |provider| provider.name == provider_name}.day_off
     
     return false if day_of_week == provider_day_off
     return false if conflict?

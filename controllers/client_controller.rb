@@ -4,5 +4,5 @@
 require 'tty-prompt'
 require_relative '../models/client'
 
-class Client_Controller
+class ClientController
 end

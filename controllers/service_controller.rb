@@ -1,7 +1,7 @@
 require 'tty-prompt'
 require_relative '../models/service'
 
-class Service_Controller
+class ServiceController
   attr_accessor :services
 
   @services = [Service.new('Hair cut', 20, 1), 

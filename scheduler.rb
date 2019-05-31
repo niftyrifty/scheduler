@@ -18,13 +18,13 @@ class Scheduler
 			ProviderController.index
 			ProviderController.remove
 		when "Add Service"
-			Service_Controller.index
-			Service_Controller.add
+			ServiceController.index
+			ServiceController.add
 		when "Remove Service"
-			Service_Controller.index
-			Service_Controller.remove
+			ServiceController.index
+			ServiceController.remove
 		when "Schedule an Appointment"
-			Appointment_Controller.add
+			AppointmentController.add
 		when "View Schedule of a particular Provider"
 			ProviderController.view_schedule
 		when "End Session"
