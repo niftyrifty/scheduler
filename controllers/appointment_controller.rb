@@ -2,16 +2,7 @@ require 'tty-prompt'
 require 'date'
 require_relative '../models/appointment'
 require_relative './provider_controller'
-
-DAY_OF_WEEK = {
-      1 => 'Monday',
-      2 => 'Tuesday',
-      3 => 'Wednesday',
-      4 => 'Thursday',
-      5 => 'Friday',
-      6 => 'Saturday',
-      0 => 'Sunday'
-    }
+require_relative '../utilities'
 
 class AppointmentController
   attr_accessor :appointment_candidate, :appointments
@@ -78,7 +69,7 @@ class AppointmentController
 
   def self.check_availability
     key_of_day = @appointment_candidate.date.wday
-    day_of_week = DAY_OF_WEEK[key_of_day]
+    day_of_week = DaysOfWeek::DAY_OF_WEEK[key_of_day]
     provider_name = @appointment_candidate.provider
     provider_days_off = ProviderController.all.find { |provider| provider.name == provider_name}.days_off
     

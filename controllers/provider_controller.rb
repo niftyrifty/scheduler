@@ -64,6 +64,18 @@ class ProviderController
     puts self.index
   end
 
+
+  def self.add_availability
+	prompt = TTY::Prompt.new(interrupt: :exit)
+	all_names = []
+	@providers.each { |provider| all_names << provider.name}
+
+	provider_name = prompt.select("Which provider's schedule would you like to see?", all_names)
+
+	selected_provider = @providers.select { |provider| provider.name == provider_name}[0]
+
+
+  end
   #TODO: abstract the puts into something that's in control of input and output
 
   def self.view_schedule

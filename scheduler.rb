@@ -17,6 +17,14 @@ class Scheduler
 			controller: ServiceController,
 			method_name: :add
 		},
+		"Add Provider Availability" => {
+			controller: ProviderController,
+			method_name: :add_availability
+		},
+		"Remove Provider Availability" => {
+			controller: ProviderController,
+			method_name: :remove_availability
+		},
 		"Remove Service" => {
 			controller: ServiceController,
 			method_name: :remove
