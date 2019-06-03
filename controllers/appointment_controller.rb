@@ -80,9 +80,9 @@ class AppointmentController
     key_of_day = @appointment_candidate.date.wday
     day_of_week = DAY_OF_WEEK[key_of_day]
     provider_name = @appointment_candidate.provider
-    provider_day_off = ProviderController.all.find { |provider| provider.name == provider_name}.day_off
+    provider_days_off = ProviderController.all.find { |provider| provider.name == provider_name}.days_off
     
-    return false if day_of_week == provider_day_off
+    return false if provider_days_off.include?(day_of_week) 
     return false if conflict?
     true
   end

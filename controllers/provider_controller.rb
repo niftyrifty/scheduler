@@ -23,7 +23,10 @@ class ProviderController
 
     @providers.map do |provider|
       puts "#{provider.name}'s phone number is #{provider.phone_number}."
-      puts "(S)he provides these services: #{provider.services} every day of the week except for #{provider.day_off}."
+      puts "(S)he provides these services: #{provider.services} every day of the week except for:"
+      provider.days_off.each do |day|
+	      puts day 
+      end
       puts "––––––––––"
     end
   end
@@ -36,10 +39,10 @@ class ProviderController
     choices = @service_types
     services = prompt.multi_select("Please choose services from the 
                 following list:", choices)
-    day_off = prompt.select('Day off:', ['Monday', 'Tuesday', 'Wednesday', 
+    days_off = prompt.multi_select('Days off:', ['Monday', 'Tuesday', 'Wednesday', 
                 'Thursday', 'Friday', 'Saturday', 'Sunday'])
 
-    provider = Provider.new(name, phone_number, services, day_off)
+    provider = Provider.new(name, phone_number, services, days_off)
     @providers << provider
 
     puts "\n"
